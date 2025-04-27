@@ -1,23 +1,400 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PageController!{% endblock %}
+{% block title %}Welcome to Tunisia!{% endblock %}
 
 {% block body %}
-{% include 'navbar.html.twig' %}
- <div class="container text-center mt-4">
-        <img src="{{ asset('images/tunsym.jpg') }}" alt="Tunisia Image" class="img-fluid rounded">
+        {% include 'navbar.html.twig' %}
+
+
+
+    <main class="main-content">
+        <div class="products-container">
+            <h2 class="section-title">Nos Produits Populaires</h2>
+            <div class="product-cards">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <div class="product-badge">Nouveau</div>
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Smartphone" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-name">Smartphone Premium</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="rating-count">(128)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€599.99</span>
+                            <span class="original-price">€699.99</span>
+                        </div>
+                        <a href="{{ path('add_to_panier', {'product': 'smartphone'}) }}" class="add-to-cart">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <div class="product-badge">Promo</div>
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Montre intelligente" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-name">Montre Intelligente</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="rating-count">(86)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€199.99</span>
+                            <span class="original-price">€249.99</span>
+                        </div>
+                        <a href="{{ path('add_to_panier', {'product': 'watch'}) }}" class="add-to-cart">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <div class="product-badge">Best-seller</div>
+                    <div class="product-image-container">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Écouteurs" class="product-image">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-name">Écouteurs Sans Fil</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="rating-count">(215)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">€149.99</span>
+                        </div>
+                        <a href="{{ path('add_to_panier', {'product': 'headphones'}) }}" class="add-to-cart">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% include 'footer.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --border-color: #e1e1e1;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand .logo-link {
+            color: var(--light-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .navbar-brand .logo-link:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: var(--light-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--primary-color);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .toggle-icon {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--light-color);
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+        }
+
+        .btn-logout {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+            min-height: calc(100vh - 150px);
+        }
+
+        /* Product Cards Styles */
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
         
-        <h2 class="mt-3">Hello from Tunisia</h2>
-        <p><strong>It's currently {{ "now"|date("h:i A") }}</strong></p>
+       
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
 
-        <footer class="mt-4">
-           <a href="{{ path('app_about') }}">About</a>
-          
-    </div>
-{% include 'footer.html.twig' %}
+.product-card {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    width: 300px;
+    transition: var(--transition);
+}
 
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
 
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--success-color);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
 
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
 
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
 
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+.product-details {
+    padding: 1rem;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-rating {
+    color: var(--warning-color);
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.current-price {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--success-color);
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.add-to-cart {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.add-to-cart:hover {
+    background-color: #2c80c4;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    color: var(--primary-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+}
+
+.quick-view {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.product-image-container:hover .quick-view {
+    opacity: 1;
+}
+</style>
 {% endblock %}

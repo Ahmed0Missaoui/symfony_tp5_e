@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Panier{% endblock %}
+
+{% block body %}
+    {% include 'navbar.html.twig' %}
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Votre Panier 🛒</h2>
+
+        {% for label, messages in app.flashes %}
+            <div class="alert alert-{{ label }}">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        {% if panier is empty %}
+            <div class="alert alert-warning">
+                Votre panier est vide.
+            </div>
+        {% else %}
+            <ul class="list-group">
+                {% for item in panier %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            {# Provide a default image if item.image is not set #}
+                            <img src="{{ item.image | default('https://via.placeholder.com/50') }}"
+                                 alt="{{ item.name }}"
+                                 style="width: 50px; height: 50px; object-fit: cover;"
+                                 class="me-3">
+                            <span>{{ item.name }}</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-primary rounded-pill mx-3">{{ item.price | number_format(2, ',', ' ') }} €</span>
+                            <a href="{{ path('remove_from_panier', { index: loop.index0 }) }}" class="btn btn-danger btn-sm">❌</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
